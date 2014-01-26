@@ -1,0 +1,23 @@
+{
+  "name": "flaky-client",
+  "version": "0.0.0",
+  "description": "Client for flaky web service",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/glenjamin/flaky-client.git"
+  },
+  "author": "Glen Mailer <glenjamin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glenjamin/flaky-client/issues"
+  },
+  "homepage": "https://github.com/glenjamin/flaky-client",
+  "dependencies": {
+    "async": "~0.2.10",
+    "request": "~2.33.0",
+    "concat-stream": "~1.4.1"
+  }
+}
