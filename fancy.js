@@ -12,17 +12,24 @@ function verify(baseUrl, num, callback) {
 
     var api = apiClient(createClient(baseUrl));
 
+    var hashes = {};
+
     async.waterfall([
         api.getList.bind(api, num),
-        function(list, next) {
+        function turnListIntoHashes(list, next) {
             async.map(list, api.getPageIdAndHash, next)
         },
-        function(hasheslist, next) {
-            var hashes = {}
+        function collectHashes(hasheslist, next) {
             hasheslist.forEach(function(item) {
                 hashes[item[0]] = item[1];
             });
-            api.verify(hashes, next)
+            next(null, hashes);
+        },
+        api.verify,
+        function summarise(results, next) {
+            next(null, Object.keys(results).map(function(id) {
+                return [id, hashes[id], results[id]];
+            }));
         }
     ], callback);
     return;
